@@ -101,40 +101,40 @@ export default function PlannerPage() {
         </div>
         <button
           onClick={autoGroup}
-          className="bg-[var(--color-forest)] text-white px-4 py-2 rounded-lg text-sm hover:bg-[var(--color-moss)] transition-colors"
+          className="bg-[var(--color-forest)] text-white px-2.5 py-1 rounded-md text-xs hover:bg-[var(--color-moss)] transition-colors"
         >
-          Auto-Group Sections
+          Auto-Group
         </button>
         <button
           onClick={() => addDay()}
-          className="border border-[var(--color-forest)] text-[var(--color-forest)] px-4 py-2 rounded-lg text-sm hover:bg-[var(--color-forest)] hover:text-white transition-colors"
+          className="border border-[var(--color-forest)] text-[var(--color-forest)] px-2.5 py-1 rounded-md text-xs hover:bg-[var(--color-forest)] hover:text-white transition-colors"
         >
-          + Add Day
+          + Day
         </button>
         <button
           onClick={undo}
           disabled={!canUndo}
-          className="border border-stone-300 text-[var(--color-stone)] px-4 py-2 rounded-lg text-sm hover:bg-stone-100 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+          className="border border-stone-300 text-[var(--color-stone)] px-2.5 py-1 rounded-md text-xs hover:bg-stone-100 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         >
           ↩ Undo
         </button>
         <button
           onClick={() => exportToExcel({ startDate, pace, days, sections })}
-          className="border border-[var(--color-earth)] text-[var(--color-earth)] px-4 py-2 rounded-lg text-sm hover:bg-[var(--color-earth)] hover:text-white transition-colors"
+          className="border border-[var(--color-earth)] text-[var(--color-earth)] px-2.5 py-1 rounded-md text-xs hover:bg-[var(--color-earth)] hover:text-white transition-colors"
         >
-          📊 Export Excel
+          📊 Excel
         </button>
         <button
           onClick={() => exportToDoc({ startDate, pace, days, sections })}
-          className="border border-[var(--color-earth)] text-[var(--color-earth)] px-4 py-2 rounded-lg text-sm hover:bg-[var(--color-earth)] hover:text-white transition-colors"
+          className="border border-[var(--color-earth)] text-[var(--color-earth)] px-2.5 py-1 rounded-md text-xs hover:bg-[var(--color-earth)] hover:text-white transition-colors"
         >
-          📄 Export Doc
+          📄 Doc
         </button>
         <button
           onClick={() => fileInputRef.current?.click()}
-          className="border border-[var(--color-moss)] text-[var(--color-moss)] px-4 py-2 rounded-lg text-sm hover:bg-[var(--color-moss)] hover:text-white transition-colors"
+          className="border border-[var(--color-moss)] text-[var(--color-moss)] px-2.5 py-1 rounded-md text-xs hover:bg-[var(--color-moss)] hover:text-white transition-colors"
         >
-          📂 Import Excel
+          📂 Import
         </button>
         <input
           ref={fileInputRef}
