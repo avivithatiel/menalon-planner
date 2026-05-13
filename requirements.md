@@ -56,6 +56,10 @@ A personal web tool to plan a hiking trip on the Menalon Trail in Greece. The ap
 | F-40a | Insert a new day at any position (not just at the end) | Must |
 | F-40b | Free text description/notes field per day | Must |
 | F-40c | Manually assign sections to any day via dropdown (multiple sections per day) | Must |
+| F-40d | Export itinerary plan to Excel (.xlsx) with all day/section data and summary | Must |
+| F-40e | Export itinerary plan to Doc (.doc) with formatted tables and summary | Must |
+| F-40f | Sections sorted by number within each day | Must |
+| F-40g | Export includes elevation gain/loss per section and day totals | Must |
 
 ### 3.5 Weather Integration
 | ID | Requirement | Priority |

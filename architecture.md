@@ -41,6 +41,7 @@
 | Charts | Recharts | Elevation profiles |
 | State | Zustand | Itinerary builder state |
 | DnD | @dnd-kit/core + @dnd-kit/sortable | Drag-and-drop itinerary |
+| Export | SheetJS (xlsx) + file-saver | Excel/Doc export |
 | MDX | next-mdx-remote | Road story rendering |
 | Weather | OpenWeatherMap API | 5-day forecasts |
 | AI | OpenAI API (GPT-4o) | Road story generation |
@@ -115,6 +116,7 @@ menalon-planner/
 │   │   ├── openai.ts           # OpenAI client wrapper
 │   │   ├── gpx.ts              # GPX file parser
 │   │   ├── data.ts             # Load sections/accommodations JSON
+│   │   ├── export.ts           # Excel & Doc export utilities
 │   │   └── utils.ts            # Shared utilities
 │   ├── store/
 │   │   └── itinerary.ts        # Zustand itinerary store

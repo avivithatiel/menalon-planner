@@ -39,6 +39,9 @@ Personal-use web app for planning a hiking trip on the Menalon Trail in Greece.
 - [x] Insert day at any position (not just at the end)
 - [x] Free text description/notes per day
 - [x] Manual section assignment via dropdown (multiple sections per day)
+- [x] Export plan to Excel and Doc with full day/section data
+- [x] Sections sorted by number within each day
+- [x] Export includes elevation gain/loss and highlights
 - [ ] Drag-and-drop section assignment
 
 ### Phase 4: Weather Integration ✅
