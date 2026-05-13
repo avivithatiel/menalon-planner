@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useItineraryStore } from '@/store/itinerary';
 import { getSections } from '@/lib/data';
+import { exportToExcel, exportToDoc } from '@/lib/export';
 import DifficultyBadge from '@/components/Section/DifficultyBadge';
 import { TrailSection } from '@/types';
 
@@ -98,6 +99,18 @@ export default function PlannerPage() {
           className="border border-stone-300 text-[var(--color-stone)] px-4 py-2 rounded-lg text-sm hover:bg-stone-100 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         >
           ↩ Undo
+        </button>
+        <button
+          onClick={() => exportToExcel({ startDate, pace, days, sections })}
+          className="border border-[var(--color-earth)] text-[var(--color-earth)] px-4 py-2 rounded-lg text-sm hover:bg-[var(--color-earth)] hover:text-white transition-colors"
+        >
+          📊 Export Excel
+        </button>
+        <button
+          onClick={() => exportToDoc({ startDate, pace, days, sections })}
+          className="border border-[var(--color-earth)] text-[var(--color-earth)] px-4 py-2 rounded-lg text-sm hover:bg-[var(--color-earth)] hover:text-white transition-colors"
+        >
+          📄 Export Doc
         </button>
       </div>
 
