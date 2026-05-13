@@ -36,6 +36,8 @@ function buildRows(data: ExportData) {
         To: '',
         'Distance (km)': 0,
         'Duration (hrs)': 0,
+        'Elevation Gain (m)': 0,
+        'Elevation Loss (m)': 0,
         Difficulty: '',
         Highlights: '',
         Notes: day.description || '',
@@ -51,6 +53,8 @@ function buildRows(data: ExportData) {
           To: sec.to,
           'Distance (km)': sec.distance,
           'Duration (hrs)': sec.duration,
+          'Elevation Gain (m)': sec.elevationGain,
+          'Elevation Loss (m)': sec.elevationLoss,
           Difficulty: sec.difficulty,
           Highlights: sec.highlights.join(', '),
           Notes: i === 0 ? (day.description || '') : '',
@@ -69,6 +73,8 @@ function buildRows(data: ExportData) {
     To: '',
     'Distance (km)': Math.round(totalDistance * 10) / 10,
     'Duration (hrs)': Math.round(totalDuration * 10) / 10,
+    'Elevation Gain (m)': '',
+    'Elevation Loss (m)': '',
     Difficulty: '',
     Highlights: '',
     Notes: `Pace: ${pace}${startDate ? ` | Start: ${startDate}` : ''}`,
@@ -122,13 +128,15 @@ export function exportToDoc(data: ExportData) {
     }
 
     if (!day.isRestDay && daySections.length > 0) {
+      const dayElevGain = daySections.reduce((s, sec) => s + sec.elevationGain, 0);
+      const dayElevLoss = daySections.reduce((s, sec) => s + sec.elevationLoss, 0);
       html += `<table border="1" cellpadding="4" cellspacing="0" style="border-collapse:collapse;">`;
-      html += `<tr><th>Section</th><th>From</th><th>To</th><th>Distance</th><th>Duration</th><th>Difficulty</th><th>Highlights</th></tr>`;
+      html += `<tr><th>Section</th><th>From</th><th>To</th><th>Distance</th><th>Duration</th><th>Elev. Gain</th><th>Elev. Loss</th><th>Difficulty</th><th>Highlights</th></tr>`;
       daySections.forEach((sec) => {
-        html += `<tr><td>Section ${sec.id}</td><td>${sec.from}</td><td>${sec.to}</td><td>${sec.distance} km</td><td>${sec.duration} hrs</td><td>${sec.difficulty}</td><td>${sec.highlights.join(', ')}</td></tr>`;
+        html += `<tr><td>Section ${sec.id}</td><td>${sec.from}</td><td>${sec.to}</td><td>${sec.distance} km</td><td>${sec.duration} hrs</td><td>${sec.elevationGain} m</td><td>${sec.elevationLoss} m</td><td>${sec.difficulty}</td><td>${sec.highlights.join(', ')}</td></tr>`;
       });
       html += `</table>`;
-      html += `<p><strong>Day Total:</strong> ${dayDistance.toFixed(1)} km, ${dayDuration} hrs</p>`;
+      html += `<p><strong>Day Total:</strong> ${dayDistance.toFixed(1)} km, ${dayDuration} hrs | ↑${dayElevGain}m ↓${dayElevLoss}m</p>`;
     } else if (!day.isRestDay) {
       html += `<p>No sections assigned.</p>`;
     }
