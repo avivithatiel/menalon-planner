@@ -20,6 +20,7 @@ export default function PlannerPage() {
     removeDay,
     toggleRestDay,
     removeSection,
+    setDayDescription,
     undo,
     canUndo,
   } = useItineraryStore();
@@ -177,6 +178,14 @@ export default function PlannerPage() {
                   </button>
                 </div>
               </div>
+
+              <textarea
+                value={day.description}
+                onChange={(e) => setDayDescription(dayIndex, e.target.value)}
+                placeholder="Notes for this day..."
+                className="w-full text-sm border border-stone-200 rounded-lg px-3 py-2 mb-3 resize-none focus:outline-none focus:ring-1 focus:ring-[var(--color-forest)] bg-white/50"
+                rows={2}
+              />
 
               {!day.isRestDay && (
                 <>

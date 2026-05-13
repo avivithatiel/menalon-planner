@@ -52,6 +52,7 @@ export interface ItineraryDay {
   date: string | null;
   sectionIds: number[];
   isRestDay: boolean;
+  description: string;
 }
 
 export interface ItineraryState {

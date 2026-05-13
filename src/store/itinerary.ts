@@ -23,6 +23,7 @@ interface ItineraryStore {
   addDay: (afterIndex?: number) => void;
   removeDay: (dayIndex: number) => void;
   toggleRestDay: (dayIndex: number) => void;
+  setDayDescription: (dayIndex: number, description: string) => void;
   autoGroup: () => void;
 }
 
@@ -159,6 +160,7 @@ export const useItineraryStore = create<ItineraryStore>((set, get) => ({
       date: null,
       sectionIds: [],
       isRestDay: false,
+      description: '',
     };
     const days = [
       ...prevDays.slice(0, insertAt),
@@ -218,6 +220,7 @@ export const useItineraryStore = create<ItineraryStore>((set, get) => ({
             date: startDate ? addDays(startDate, days.length) : null,
             sectionIds: displacedSections,
             isRestDay: false,
+            description: '',
           });
         }
       }
@@ -227,6 +230,15 @@ export const useItineraryStore = create<ItineraryStore>((set, get) => ({
         history: [...state.history, { startDate, pace, days: prevDays }],
         canUndo: true,
       }));
+    }
+  },
+
+  setDayDescription: (dayIndex, description) => {
+    const { days: prevDays } = get();
+    const days = [...prevDays];
+    if (days[dayIndex]) {
+      days[dayIndex] = { ...days[dayIndex], description };
+      set({ days });
     }
   },
 
@@ -247,6 +259,7 @@ export const useItineraryStore = create<ItineraryStore>((set, get) => ({
           date: startDate ? addDays(startDate, days.length) : null,
           sectionIds: currentDay,
           isRestDay: false,
+          description: '',
         });
         currentDay = [];
         currentDuration = 0;
@@ -261,6 +274,7 @@ export const useItineraryStore = create<ItineraryStore>((set, get) => ({
         date: startDate ? addDays(startDate, days.length) : null,
         sectionIds: currentDay,
         isRestDay: false,
+        description: '',
       });
     }
 
