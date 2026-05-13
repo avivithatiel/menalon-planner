@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+:root {
+  --color-forest: #2D5016;
+  --color-moss: #5B7C3D;
+  --color-earth: #8B6914;
+  --color-stone: #6B7280;
+  --color-sand: #F5F0E8;
+  --color-cream: #FEFCF6;
+  --color-trail-red: #DC2626;
+  --color-trail-yellow: #D97706;
+  --color-trail-green: #16A34A;
+}
+
+@theme inline {
+  --color-forest: var(--color-forest);
+  --color-moss: var(--color-moss);
+  --color-earth: var(--color-earth);
+  --color-stone: var(--color-stone);
+  --color-sand: var(--color-sand);
+  --color-cream: var(--color-cream);
+  --color-trail-red: var(--color-trail-red);
+  --color-trail-yellow: var(--color-trail-yellow);
+  --color-trail-green: var(--color-trail-green);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background-color: var(--color-sand);
+  color: #1a1a1a;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Leaflet fix for Next.js */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}

@@ -1,0 +1,178 @@
+[
+  {
+    "id": 1,
+    "name": "Stemnitsa – Dimitsana",
+    "from": "Stemnitsa",
+    "to": "Dimitsana",
+    "distance": 12.5,
+    "duration": 5,
+    "difficulty": 4,
+    "elevationGain": 450,
+    "elevationLoss": 520,
+    "highestPoint": 1080,
+    "highlights": [
+      "Lousios River Gorge",
+      "Medieval monasteries (Prodromou & Philosophou)",
+      "Ancient stone bridges",
+      "Riverside trail through dense vegetation"
+    ],
+    "description": "The most dramatic section follows the Lousios River gorge, passing cliff-hanging monasteries and ancient bridges. The trail descends into the gorge and climbs back up through wild landscape.",
+    "gpxFile": "/gpx/section-1.gpx",
+    "fromCoords": [37.5489, 22.0589],
+    "toCoords": [37.5906, 22.0444]
+  },
+  {
+    "id": 2,
+    "name": "Dimitsana – Zigovisti",
+    "from": "Dimitsana",
+    "to": "Zigovisti",
+    "distance": 4.2,
+    "duration": 2,
+    "difficulty": 2,
+    "elevationGain": 150,
+    "elevationLoss": 200,
+    "highestPoint": 950,
+    "highlights": [
+      "Dimitsana Open-Air Water Power Museum",
+      "Traditional stone village of Zigovisti",
+      "Panoramic mountain views",
+      "Chestnut and walnut forests"
+    ],
+    "description": "A short, pleasant walk connecting Dimitsana to the quiet mountain village of Zigovisti. Follows old mule paths through forests with excellent views of the surrounding mountains.",
+    "gpxFile": "/gpx/section-2.gpx",
+    "fromCoords": [37.5906, 22.0444],
+    "toCoords": [37.5800, 22.0800]
+  },
+  {
+    "id": 3,
+    "name": "Zigovisti – Elati",
+    "from": "Zigovisti",
+    "to": "Elati",
+    "distance": 14.9,
+    "duration": 5,
+    "difficulty": 4,
+    "elevationGain": 750,
+    "elevationLoss": 600,
+    "highestPoint": 1643,
+    "highlights": [
+      "Pleiovouni peak (1,643m) – highest point on trail",
+      "Alpine meadows and fir forests",
+      "Panoramic views of Arcadian mountains",
+      "Remote wilderness between villages"
+    ],
+    "description": "The longest and most demanding section crosses the highest point of the entire trail at Pleiovouni peak. A true mountain crossing through fir forests and alpine meadows with stunning 360° panoramas.",
+    "gpxFile": "/gpx/section-3.gpx",
+    "fromCoords": [37.5800, 22.0800],
+    "toCoords": [37.6100, 22.1300]
+  },
+  {
+    "id": 4,
+    "name": "Elati – Vytina",
+    "from": "Elati",
+    "to": "Vytina",
+    "distance": 8.5,
+    "duration": 2.5,
+    "difficulty": 2,
+    "elevationGain": 200,
+    "elevationLoss": 350,
+    "highestPoint": 1100,
+    "highlights": [
+      "Fir forest trails",
+      "Traditional village of Elati",
+      "Vytina – main trail hub with full services",
+      "Gentle descent through woodland"
+    ],
+    "description": "A relaxing walk through beautiful fir forests leading to Vytina, the largest town on the trail and the main services hub. Suitable for families with older children.",
+    "gpxFile": "/gpx/section-4.gpx",
+    "fromCoords": [37.6100, 22.1300],
+    "toCoords": [37.6689, 22.1706]
+  },
+  {
+    "id": 5,
+    "name": "Vytina – Nymfasia",
+    "from": "Vytina",
+    "to": "Nymfasia",
+    "distance": 5.6,
+    "duration": 2,
+    "difficulty": 2,
+    "elevationGain": 180,
+    "elevationLoss": 150,
+    "highestPoint": 1050,
+    "highlights": [
+      "Ancient plane trees",
+      "Springs and water fountains",
+      "Stone-built village of Nymfasia",
+      "Easy forest walk"
+    ],
+    "description": "A short, easy section through shaded forest paths connecting Vytina to the picturesque village of Nymfasia. Ideal for a half-day walk with time to explore both villages.",
+    "gpxFile": "/gpx/section-5.gpx",
+    "fromCoords": [37.6689, 22.1706],
+    "toCoords": [37.6500, 22.2000]
+  },
+  {
+    "id": 6,
+    "name": "Nymfasia – Magouliana",
+    "from": "Nymfasia",
+    "to": "Magouliana",
+    "distance": 8.9,
+    "duration": 3.5,
+    "difficulty": 4,
+    "elevationGain": 550,
+    "elevationLoss": 400,
+    "highestPoint": 1350,
+    "highlights": [
+      "Mylaon River valley",
+      "Dense fir and black pine forest",
+      "Mountain village of Magouliana",
+      "Steep ascent with rewarding views"
+    ],
+    "description": "A challenging section with significant elevation change as the trail crosses the Mylaon River valley and climbs to Magouliana. Dense forest and mountain scenery throughout.",
+    "gpxFile": "/gpx/section-6.gpx",
+    "fromCoords": [37.6500, 22.2000],
+    "toCoords": [37.6700, 22.2400]
+  },
+  {
+    "id": 7,
+    "name": "Magouliana – Valtesiniko",
+    "from": "Magouliana",
+    "to": "Valtesiniko",
+    "distance": 6.6,
+    "duration": 2.5,
+    "difficulty": 2,
+    "elevationGain": 200,
+    "elevationLoss": 300,
+    "highestPoint": 1100,
+    "highlights": [
+      "Traditional Arcadian architecture",
+      "Old mule paths",
+      "Mountain springs",
+      "Quiet pastoral landscape"
+    ],
+    "description": "A moderate walk along old mule paths connecting two traditional Arcadian villages. The trail passes through a quiet pastoral landscape with mountain views and scattered springs.",
+    "gpxFile": "/gpx/section-7.gpx",
+    "fromCoords": [37.6700, 22.2400],
+    "toCoords": [37.6900, 22.2700]
+  },
+  {
+    "id": 8,
+    "name": "Valtesiniko – Lagkadia",
+    "from": "Valtesiniko",
+    "to": "Lagkadia",
+    "distance": 13.9,
+    "duration": 5,
+    "difficulty": 2,
+    "elevationGain": 350,
+    "elevationLoss": 600,
+    "highestPoint": 1050,
+    "highlights": [
+      "Gortynian mountain landscape",
+      "Descent to Lagkadia amphitheatre village",
+      "Ancient oak and plane tree groves",
+      "Final trail section – sense of completion"
+    ],
+    "description": "The final section of the Menalon Trail descends through the NE Gortynian mountains to the amphitheatrically built village of Lagkadia. A long but moderate walk to finish the journey.",
+    "gpxFile": "/gpx/section-8.gpx",
+    "fromCoords": [37.6900, 22.2700],
+    "toCoords": [37.7200, 22.3000]
+  }
+]

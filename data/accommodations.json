@@ -1,0 +1,126 @@
+[
+  {
+    "id": "stemnitsa-archontiko",
+    "name": "Archontiko tis Zois",
+    "type": "guesthouse",
+    "village": "Stemnitsa",
+    "coords": [37.5489, 22.0589],
+    "phone": "+30 27950 81252",
+    "website": "https://archontikotiszois.gr",
+    "bookingUrl": "https://www.booking.com/searchresults.html?ss=Stemnitsa",
+    "description": "Traditional stone guesthouse in the heart of Stemnitsa with mountain views."
+  },
+  {
+    "id": "stemnitsa-trikolonion",
+    "name": "Trikolonion Country Hotel",
+    "type": "hotel",
+    "village": "Stemnitsa",
+    "coords": [37.5495, 22.0595],
+    "phone": "+30 27950 81297",
+    "website": "https://trikolonion.gr",
+    "bookingUrl": "https://www.booking.com/searchresults.html?ss=Stemnitsa",
+    "description": "Country hotel with spa facilities near the trail start."
+  },
+  {
+    "id": "dimitsana-xenonas",
+    "name": "Xenonas Dimitsana",
+    "type": "guesthouse",
+    "village": "Dimitsana",
+    "coords": [37.5906, 22.0444],
+    "phone": "+30 27950 31660",
+    "bookingUrl": "https://www.booking.com/searchresults.html?ss=Dimitsana",
+    "description": "Cozy guesthouse with fireplace and views over the Lousios gorge."
+  },
+  {
+    "id": "dimitsana-kazarma",
+    "name": "Kazarma Hotel",
+    "type": "hotel",
+    "village": "Dimitsana",
+    "coords": [37.5910, 22.0450],
+    "phone": "+30 27950 31560",
+    "website": "https://kazarma.gr",
+    "bookingUrl": "https://www.booking.com/searchresults.html?ss=Dimitsana",
+    "description": "Boutique hotel in a restored stone building with panoramic views."
+  },
+  {
+    "id": "zigovisti-xenonas",
+    "name": "Xenonas Zigovisti",
+    "type": "guesthouse",
+    "village": "Zigovisti",
+    "coords": [37.5800, 22.0800],
+    "phone": "+30 27950 81500",
+    "bookingUrl": "https://www.booking.com/searchresults.html?ss=Zigovisti+Arcadia",
+    "description": "Small traditional guesthouse in the quiet village of Zigovisti."
+  },
+  {
+    "id": "elati-guesthouse",
+    "name": "Elati Guesthouse",
+    "type": "guesthouse",
+    "village": "Elati",
+    "coords": [37.6100, 22.1300],
+    "phone": "+30 27950 41200",
+    "bookingUrl": "https://www.booking.com/searchresults.html?ss=Elati+Arcadia",
+    "description": "Mountain guesthouse at the foot of Menalon, surrounded by fir forests."
+  },
+  {
+    "id": "vytina-menalon",
+    "name": "Hotel Menalon",
+    "type": "hotel",
+    "village": "Vytina",
+    "coords": [37.6689, 22.1706],
+    "phone": "+30 27950 22250",
+    "website": "https://hotelmenalon.gr",
+    "bookingUrl": "https://www.booking.com/searchresults.html?ss=Vytina",
+    "description": "The main hotel in Vytina, the trail's largest hub village."
+  },
+  {
+    "id": "vytina-villa",
+    "name": "Villa Vytina",
+    "type": "guesthouse",
+    "village": "Vytina",
+    "coords": [37.6695, 22.1710],
+    "phone": "+30 27950 22400",
+    "bookingUrl": "https://www.booking.com/searchresults.html?ss=Vytina",
+    "description": "Family-run villa with garden, close to the village square."
+  },
+  {
+    "id": "nymfasia-rooms",
+    "name": "Nymfasia Traditional Rooms",
+    "type": "rooms",
+    "village": "Nymfasia",
+    "coords": [37.6500, 22.2000],
+    "phone": "+30 27950 49100",
+    "bookingUrl": "https://www.booking.com/searchresults.html?ss=Nymfasia",
+    "description": "Simple rooms in a stone-built house in the picturesque village."
+  },
+  {
+    "id": "magouliana-xenonas",
+    "name": "Xenonas Magouliana",
+    "type": "guesthouse",
+    "village": "Magouliana",
+    "coords": [37.6700, 22.2400],
+    "phone": "+30 27950 49300",
+    "bookingUrl": "https://www.booking.com/searchresults.html?ss=Magouliana+Arcadia",
+    "description": "Traditional guesthouse in the mountain village of Magouliana."
+  },
+  {
+    "id": "valtesiniko-guesthouse",
+    "name": "Valtesiniko Mountain Lodge",
+    "type": "guesthouse",
+    "village": "Valtesiniko",
+    "coords": [37.6900, 22.2700],
+    "phone": "+30 27950 51200",
+    "bookingUrl": "https://www.booking.com/searchresults.html?ss=Valtesiniko",
+    "description": "Mountain lodge with fireplace and hiking trail access."
+  },
+  {
+    "id": "lagkadia-hotel",
+    "name": "Hotel Lagkadia",
+    "type": "hotel",
+    "village": "Lagkadia",
+    "coords": [37.7200, 22.3000],
+    "phone": "+30 27950 61200",
+    "bookingUrl": "https://www.booking.com/searchresults.html?ss=Lagkadia+Arcadia",
+    "description": "Hotel in the amphitheatrically built village, marking the trail's end."
+  }
+]
