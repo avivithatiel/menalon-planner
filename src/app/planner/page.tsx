@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useItineraryStore } from '@/store/itinerary';
 import { getSections } from '@/lib/data';
-import { exportToExcel, exportToDoc } from '@/lib/export';
+import { exportToExcel, exportToDoc, importFromExcel } from '@/lib/export';
 import DifficultyBadge from '@/components/Section/DifficultyBadge';
 import { TrailSection } from '@/types';
 
@@ -16,6 +16,7 @@ export default function PlannerPage() {
     days,
     setStartDate,
     setPace,
+    setDays,
     autoGroup,
     addDay,
     removeDay,
@@ -26,6 +27,23 @@ export default function PlannerPage() {
     undo,
     canUndo,
   } = useItineraryStore();
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImport = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      const result = await importFromExcel(file);
+      if (result.startDate) setStartDate(result.startDate);
+      setPace(result.pace);
+      setDays(result.days);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Import failed');
+    }
+    // Reset input so same file can be re-uploaded
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
 
   // Auto-group on first load if no days exist
   useEffect(() => {
@@ -112,6 +130,19 @@ export default function PlannerPage() {
         >
           📄 Export Doc
         </button>
+        <button
+          onClick={() => fileInputRef.current?.click()}
+          className="border border-[var(--color-moss)] text-[var(--color-moss)] px-4 py-2 rounded-lg text-sm hover:bg-[var(--color-moss)] hover:text-white transition-colors"
+        >
+          📂 Import Excel
+        </button>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".xlsx,.xls"
+          onChange={handleImport}
+          className="hidden"
+        />
       </div>
 
       {/* Summary */}

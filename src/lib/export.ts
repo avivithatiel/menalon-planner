@@ -100,6 +100,82 @@ export function exportToExcel(data: ExportData) {
   saveAs(blob, 'osi-avivit-menalon-trail.xlsx');
 }
 
+export interface ImportResult {
+  startDate: string | null;
+  pace: 'relaxed' | 'moderate' | 'fast';
+  days: ItineraryDay[];
+}
+
+export function importFromExcel(file: File): Promise<ImportResult> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const data = new Uint8Array(e.target?.result as ArrayBuffer);
+        const wb = XLSX.read(data, { type: 'array' });
+        const ws = wb.Sheets[wb.SheetNames[0]];
+        const rows = XLSX.utils.sheet_to_json<Record<string, string | number>>(ws);
+
+        // Parse pace and start date from the TOTAL row's Notes
+        let startDate: string | null = null;
+        let pace: 'relaxed' | 'moderate' | 'fast' = 'moderate';
+        const totalRow = rows.find((r) => r['Section'] === 'TOTAL');
+        if (totalRow) {
+          const notes = String(totalRow['Notes'] || '');
+          const paceMatch = notes.match(/Pace:\s*(\w+)/i);
+          if (paceMatch) {
+            const p = paceMatch[1].toLowerCase();
+            if (p === 'relaxed' || p === 'moderate' || p === 'fast') pace = p;
+          }
+          const dateMatch = notes.match(/Start:\s*(\S+)/);
+          if (dateMatch) startDate = dateMatch[1];
+        }
+
+        // Group rows by day number (exclude TOTAL row)
+        const dataRows = rows.filter((r) => r['Day'] && r['Section'] !== 'TOTAL');
+        const dayMap = new Map<number, { sectionIds: number[]; isRestDay: boolean; date: string | null; description: string }>();
+
+        dataRows.forEach((row) => {
+          const dayNum = Number(row['Day']);
+          if (!dayMap.has(dayNum)) {
+            dayMap.set(dayNum, {
+              sectionIds: [],
+              isRestDay: String(row['Type'] || '') === 'Rest Day',
+              date: String(row['Date'] || '') || null,
+              description: String(row['Notes'] || ''),
+            });
+          }
+          const dayData = dayMap.get(dayNum)!;
+          const sectionStr = String(row['Section'] || '');
+          const sectionMatch = sectionStr.match(/Section\s+(\d+)/i);
+          if (sectionMatch) {
+            const sectionId = Number(sectionMatch[1]);
+            if (!dayData.sectionIds.includes(sectionId)) {
+              dayData.sectionIds.push(sectionId);
+            }
+          }
+        });
+
+        const days: ItineraryDay[] = Array.from(dayMap.entries())
+          .sort(([a], [b]) => a - b)
+          .map(([dayNum, data]) => ({
+            dayNumber: dayNum,
+            date: data.date || null,
+            sectionIds: data.sectionIds,
+            isRestDay: data.isRestDay,
+            description: data.description,
+          }));
+
+        resolve({ startDate, pace, days });
+      } catch (err) {
+        reject(new Error('Failed to parse Excel file. Make sure it was exported from this app.'));
+      }
+    };
+    reader.onerror = () => reject(new Error('Failed to read file.'));
+    reader.readAsArrayBuffer(file);
+  });
+}
+
 export function exportToDoc(data: ExportData) {
   const { days, sections, startDate, pace } = data;
 

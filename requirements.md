@@ -60,6 +60,7 @@ A personal web tool to plan a hiking trip on the Menalon Trail in Greece. The ap
 | F-40e | Export itinerary plan to Doc (.doc) with formatted tables and summary | Must |
 | F-40f | Sections sorted by number within each day | Must |
 | F-40g | Export includes elevation gain/loss per section and day totals | Must |
+| F-40h | Import from exported Excel file to restore/continue planning | Must |
 
 ### 3.5 Weather Integration
 | ID | Requirement | Priority |

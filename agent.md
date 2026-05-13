@@ -42,6 +42,7 @@ Personal-use web app for planning a hiking trip on the Menalon Trail in Greece.
 - [x] Export plan to Excel and Doc with full day/section data
 - [x] Sections sorted by number within each day
 - [x] Export includes elevation gain/loss and highlights
+- [x] Import from exported Excel to continue planning
 - [ ] Drag-and-drop section assignment
 
 ### Phase 4: Weather Integration ✅
