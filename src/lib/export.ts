@@ -36,6 +36,7 @@ function buildRows(data: ExportData) {
         'Distance (km)': 0,
         'Duration (hrs)': 0,
         Difficulty: '',
+        Highlights: '',
         Notes: day.description || '',
       });
     } else {
@@ -50,6 +51,7 @@ function buildRows(data: ExportData) {
           'Distance (km)': sec.distance,
           'Duration (hrs)': sec.duration,
           Difficulty: sec.difficulty,
+          Highlights: sec.highlights.join(', '),
           Notes: i === 0 ? (day.description || '') : '',
         });
       });
@@ -67,6 +69,7 @@ function buildRows(data: ExportData) {
     'Distance (km)': Math.round(totalDistance * 10) / 10,
     'Duration (hrs)': Math.round(totalDuration * 10) / 10,
     Difficulty: '',
+    Highlights: '',
     Notes: `Pace: ${pace}${startDate ? ` | Start: ${startDate}` : ''}`,
   });
 
@@ -118,9 +121,9 @@ export function exportToDoc(data: ExportData) {
 
     if (!day.isRestDay && daySections.length > 0) {
       html += `<table border="1" cellpadding="4" cellspacing="0" style="border-collapse:collapse;">`;
-      html += `<tr><th>Section</th><th>From</th><th>To</th><th>Distance</th><th>Duration</th><th>Difficulty</th></tr>`;
+      html += `<tr><th>Section</th><th>From</th><th>To</th><th>Distance</th><th>Duration</th><th>Difficulty</th><th>Highlights</th></tr>`;
       daySections.forEach((sec) => {
-        html += `<tr><td>Section ${sec.id}</td><td>${sec.from}</td><td>${sec.to}</td><td>${sec.distance} km</td><td>${sec.duration} hrs</td><td>${sec.difficulty}</td></tr>`;
+        html += `<tr><td>Section ${sec.id}</td><td>${sec.from}</td><td>${sec.to}</td><td>${sec.distance} km</td><td>${sec.duration} hrs</td><td>${sec.difficulty}</td><td>${sec.highlights.join(', ')}</td></tr>`;
       });
       html += `</table>`;
       html += `<p><strong>Day Total:</strong> ${dayDistance.toFixed(1)} km, ${dayDuration} hrs</p>`;
