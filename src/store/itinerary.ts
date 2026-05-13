@@ -115,11 +115,35 @@ export const useItineraryStore = create<ItineraryStore>((set, get) => ({
   toggleRestDay: (dayIndex) => {
     const days = [...get().days];
     if (days[dayIndex]) {
+      const becomingRestDay = !days[dayIndex].isRestDay;
+      const displacedSections = becomingRestDay ? days[dayIndex].sectionIds : [];
+
       days[dayIndex] = {
         ...days[dayIndex],
-        isRestDay: !days[dayIndex].isRestDay,
-        sectionIds: !days[dayIndex].isRestDay ? [] : days[dayIndex].sectionIds,
+        isRestDay: becomingRestDay,
+        sectionIds: becomingRestDay ? [] : days[dayIndex].sectionIds,
       };
+
+      // Move displaced sections to the next day
+      if (becomingRestDay && displacedSections.length > 0) {
+        const nextDayIndex = dayIndex + 1;
+        if (nextDayIndex < days.length) {
+          days[nextDayIndex] = {
+            ...days[nextDayIndex],
+            sectionIds: [...displacedSections, ...days[nextDayIndex].sectionIds],
+          };
+        } else {
+          // Create a new day to hold the displaced sections
+          const { startDate } = get();
+          days.push({
+            dayNumber: days.length + 1,
+            date: startDate ? addDays(startDate, days.length) : null,
+            sectionIds: displacedSections,
+            isRestDay: false,
+          });
+        }
+      }
+
       set({ days });
     }
   },
