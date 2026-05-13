@@ -1,10 +1,19 @@
 import { create } from 'zustand';
 import { ItineraryDay } from '@/types';
 
+interface Snapshot {
+  startDate: string | null;
+  pace: 'relaxed' | 'moderate' | 'fast';
+  days: ItineraryDay[];
+}
+
 interface ItineraryStore {
   startDate: string | null;
   pace: 'relaxed' | 'moderate' | 'fast';
   days: ItineraryDay[];
+  history: Snapshot[];
+  canUndo: boolean;
+  undo: () => void;
   setStartDate: (date: string) => void;
   setPace: (pace: 'relaxed' | 'moderate' | 'fast') => void;
   setDays: (days: ItineraryDay[]) => void;
@@ -39,45 +48,90 @@ export const useItineraryStore = create<ItineraryStore>((set, get) => ({
   startDate: null,
   pace: 'moderate',
   days: [],
+  history: [],
+  canUndo: false,
+
+  undo: () => {
+    const { history } = get();
+    if (history.length === 0) return;
+    const prev = history[history.length - 1];
+    set({
+      startDate: prev.startDate,
+      pace: prev.pace,
+      days: prev.days,
+      history: history.slice(0, -1),
+      canUndo: history.length - 1 > 0,
+    });
+  },
 
   setStartDate: (date) => {
-    set({ startDate: date });
-    // Update day dates
-    const days = get().days.map((day, i) => ({
+    const { startDate, pace, days } = get();
+    const snapshot: Snapshot = { startDate, pace, days };
+    const updatedDays = days.map((day, i) => ({
       ...day,
       date: addDays(date, i),
     }));
-    set({ days });
+    set((state) => ({
+      startDate: date,
+      days: updatedDays,
+      history: [...state.history, snapshot],
+      canUndo: true,
+    }));
   },
 
-  setPace: (pace) => set({ pace }),
+  setPace: (pace) => {
+    const { startDate, pace: prevPace, days } = get();
+    set((state) => ({
+      pace,
+      history: [...state.history, { startDate, pace: prevPace, days }],
+      canUndo: true,
+    }));
+  },
 
-  setDays: (days) => set({ days }),
+  setDays: (days) => {
+    const { startDate, pace, days: prevDays } = get();
+    set((state) => ({
+      days,
+      history: [...state.history, { startDate, pace, days: prevDays }],
+      canUndo: true,
+    }));
+  },
 
   assignSection: (sectionId, dayIndex) => {
-    const days = [...get().days];
+    const { startDate, pace, days: prevDays } = get();
+    const days = [...prevDays];
     if (days[dayIndex] && !days[dayIndex].sectionIds.includes(sectionId)) {
       days[dayIndex] = {
         ...days[dayIndex],
         sectionIds: [...days[dayIndex].sectionIds, sectionId],
       };
-      set({ days });
+      set((state) => ({
+        days,
+        history: [...state.history, { startDate, pace, days: prevDays }],
+        canUndo: true,
+      }));
     }
   },
 
   removeSection: (sectionId, dayIndex) => {
-    const days = [...get().days];
+    const { startDate, pace, days: prevDays } = get();
+    const days = [...prevDays];
     if (days[dayIndex]) {
       days[dayIndex] = {
         ...days[dayIndex],
         sectionIds: days[dayIndex].sectionIds.filter((id) => id !== sectionId),
       };
-      set({ days });
+      set((state) => ({
+        days,
+        history: [...state.history, { startDate, pace, days: prevDays }],
+        canUndo: true,
+      }));
     }
   },
 
   moveSection: (sectionId, fromDay, toDay) => {
-    const days = [...get().days];
+    const { startDate, pace, days: prevDays } = get();
+    const days = [...prevDays];
     if (days[fromDay] && days[toDay]) {
       days[fromDay] = {
         ...days[fromDay],
@@ -89,31 +143,45 @@ export const useItineraryStore = create<ItineraryStore>((set, get) => ({
           sectionIds: [...days[toDay].sectionIds, sectionId],
         };
       }
-      set({ days });
+      set((state) => ({
+        days,
+        history: [...state.history, { startDate, pace, days: prevDays }],
+        canUndo: true,
+      }));
     }
   },
 
   addDay: () => {
-    const { days, startDate } = get();
+    const { days: prevDays, startDate, pace } = get();
     const newDay: ItineraryDay = {
-      dayNumber: days.length + 1,
-      date: startDate ? addDays(startDate, days.length) : null,
+      dayNumber: prevDays.length + 1,
+      date: startDate ? addDays(startDate, prevDays.length) : null,
       sectionIds: [],
       isRestDay: false,
     };
-    set({ days: [...days, newDay] });
+    set((state) => ({
+      days: [...prevDays, newDay],
+      history: [...state.history, { startDate, pace, days: prevDays }],
+      canUndo: true,
+    }));
   },
 
   removeDay: (dayIndex) => {
-    const days = get().days.filter((_, i) => i !== dayIndex).map((day, i) => ({
+    const { startDate, pace, days: prevDays } = get();
+    const days = prevDays.filter((_, i) => i !== dayIndex).map((day, i) => ({
       ...day,
       dayNumber: i + 1,
     }));
-    set({ days });
+    set((state) => ({
+      days,
+      history: [...state.history, { startDate, pace, days: prevDays }],
+      canUndo: true,
+    }));
   },
 
   toggleRestDay: (dayIndex) => {
-    const days = [...get().days];
+    const { startDate, pace, days: prevDays } = get();
+    const days = [...prevDays];
     if (days[dayIndex]) {
       const becomingRestDay = !days[dayIndex].isRestDay;
       const displacedSections = becomingRestDay ? days[dayIndex].sectionIds : [];
@@ -144,12 +212,16 @@ export const useItineraryStore = create<ItineraryStore>((set, get) => ({
         }
       }
 
-      set({ days });
+      set((state) => ({
+        days,
+        history: [...state.history, { startDate, pace, days: prevDays }],
+        canUndo: true,
+      }));
     }
   },
 
   autoGroup: () => {
-    const { pace, startDate } = get();
+    const { pace, startDate, days: prevDays } = get();
     const config = PACE_CONFIG[pace];
     const days: ItineraryDay[] = [];
     let currentDay: number[] = [];
@@ -182,7 +254,11 @@ export const useItineraryStore = create<ItineraryStore>((set, get) => ({
       });
     }
 
-    set({ days });
+    set((state) => ({
+      days,
+      history: [...state.history, { startDate, pace, days: prevDays }],
+      canUndo: true,
+    }));
   },
 }));
 

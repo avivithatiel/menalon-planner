@@ -20,6 +20,8 @@ export default function PlannerPage() {
     removeDay,
     toggleRestDay,
     removeSection,
+    undo,
+    canUndo,
   } = useItineraryStore();
 
   // Auto-group on first load if no days exist
@@ -87,6 +89,13 @@ export default function PlannerPage() {
           className="border border-[var(--color-forest)] text-[var(--color-forest)] px-4 py-2 rounded-lg text-sm hover:bg-[var(--color-forest)] hover:text-white transition-colors"
         >
           + Add Day
+        </button>
+        <button
+          onClick={undo}
+          disabled={!canUndo}
+          className="border border-stone-300 text-[var(--color-stone)] px-4 py-2 rounded-lg text-sm hover:bg-stone-100 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          ↩ Undo
         </button>
       </div>
 
