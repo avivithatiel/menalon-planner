@@ -21,6 +21,7 @@ export default function PlannerPage() {
     toggleRestDay,
     removeSection,
     setDayDescription,
+    assignSection,
     undo,
     canUndo,
   } = useItineraryStore();
@@ -221,9 +222,27 @@ export default function PlannerPage() {
                     </div>
                   ) : (
                     <p className="text-sm text-[var(--color-stone)] italic">
-                      No sections assigned. Use Auto-Group or drag sections here.
+                      No sections assigned yet. Use the dropdown below or Auto-Group.
                     </p>
                   )}
+                  <select
+                    value=""
+                    onChange={(e) => {
+                      if (e.target.value) {
+                        assignSection(Number(e.target.value), dayIndex);
+                      }
+                    }}
+                    className="mt-2 w-full text-sm border border-stone-200 rounded-lg px-3 py-2 text-[var(--color-stone)] bg-white focus:outline-none focus:ring-1 focus:ring-[var(--color-forest)]"
+                  >
+                    <option value="">+ Add section to this day...</option>
+                    {sections
+                      .filter((s) => !day.sectionIds.includes(s.id))
+                      .map((s) => (
+                        <option key={s.id} value={s.id}>
+                          Section {s.id}: {s.from} → {s.to} ({s.distance}km, {s.duration}hrs)
+                        </option>
+                      ))}
+                  </select>
                 </>
               )}
             </div>
