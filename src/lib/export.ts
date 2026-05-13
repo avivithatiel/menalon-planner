@@ -20,6 +20,7 @@ function buildRows(data: ExportData) {
     const daySections = day.sectionIds
       .map((id) => sections.find((s) => s.id === id))
       .filter(Boolean) as TrailSection[];
+    daySections.sort((a, b) => a.id - b.id);
     const dayDistance = daySections.reduce((s, sec) => s + sec.distance, 0);
     const dayDuration = daySections.reduce((s, sec) => s + sec.duration, 0);
     totalDistance += dayDistance;
@@ -108,6 +109,7 @@ export function exportToDoc(data: ExportData) {
     const daySections = day.sectionIds
       .map((id) => sections.find((s) => s.id === id))
       .filter(Boolean) as TrailSection[];
+    daySections.sort((a, b) => a.id - b.id);
     const dayDistance = daySections.reduce((s, sec) => s + sec.distance, 0);
     const dayDuration = daySections.reduce((s, sec) => s + sec.duration, 0);
     totalDistance += dayDistance;
