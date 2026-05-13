@@ -143,11 +143,9 @@ export function exportToDoc(data: ExportData) {
   .section-route { flex: 1; }
   .section-route .from-to { font-weight: 600; font-size: 14px; }
   .section-route .section-num { color: #6b7280; font-size: 12px; }
-  .section-stats { display: flex; gap: 12px; align-items: center; }
-  .stat { text-align: center; padding: 2px 8px; }
-  .stat .value { font-weight: 600; font-size: 13px; }
-  .stat .label { font-size: 10px; color: #6b7280; text-transform: uppercase; }
-  .difficulty-badge { display: inline-block; padding: 2px 8px; border-radius: 12px; color: white; font-size: 11px; font-weight: 600; }
+  .section-stats { font-size: 13px; color: #374151; white-space: nowrap; }
+  .section-stats .sep { color: #d1d5db; margin: 0 4px; }
+  .difficulty-badge { display: inline-block; padding: 2px 8px; border-radius: 12px; color: white; font-size: 11px; font-weight: 600; margin-left: 8px; }
   .highlights { margin-top: 8px; padding: 10px 14px; background: #f0fdf4; border-radius: 6px; }
   .highlights .title { font-size: 11px; text-transform: uppercase; color: #5b7c3d; font-weight: 600; margin-bottom: 4px; }
   .highlights ul { margin: 0; padding-left: 16px; font-size: 13px; color: #374151; }
@@ -207,11 +205,8 @@ export function exportToDoc(data: ExportData) {
         html += `<div class="section-num">Section ${sec.id}</div>`;
         html += `</div>`;
         html += `<div class="section-stats">`;
-        html += `<div class="stat"><div class="value">${sec.distance}km</div><div class="label">dist</div></div>`;
-        html += `<div class="stat"><div class="value">${sec.duration}h</div><div class="label">time</div></div>`;
-        html += `<div class="stat"><div class="value">↑${sec.elevationGain}m</div><div class="label">gain</div></div>`;
-        html += `<div class="stat"><div class="value">↓${sec.elevationLoss}m</div><div class="label">loss</div></div>`;
-        html += `<div class="stat"><span class="difficulty-badge" style="background:${difficultyColor(sec.difficulty)}">${difficultyLabel(sec.difficulty)}</span></div>`;
+        html += `${sec.distance}km<span class="sep">·</span>${sec.duration}h<span class="sep">·</span>↑${sec.elevationGain}m<span class="sep">·</span>↓${sec.elevationLoss}m`;
+        html += `<span class="difficulty-badge" style="background:${difficultyColor(sec.difficulty)}">${difficultyLabel(sec.difficulty)}</span>`;
         html += `</div></div>`;
       });
 
