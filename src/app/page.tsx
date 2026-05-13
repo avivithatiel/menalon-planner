@@ -14,7 +14,7 @@ export default function Home() {
       <section className="bg-[var(--color-forest)] text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Menalon Trail
+            Osi&amp;Avivit&apos;s Menalon Trail
           </h1>
           <p className="text-lg text-green-200 mb-6 max-w-2xl mx-auto">
             75 km across the heart of Arcadia — Greece&apos;s first certified hiking trail.

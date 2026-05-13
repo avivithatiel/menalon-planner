@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Menalon Trail Planner",
+  title: "Osi&Avivit's Menalon Trail",
   description: "Plan your hiking trip on the Menalon Trail in Greece — 75km across 8 sections and 9 Arcadian villages.",
 };
 

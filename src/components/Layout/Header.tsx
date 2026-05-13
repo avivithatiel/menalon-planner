@@ -8,7 +8,7 @@ export default function Header() {
           <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M3 20L9 8l4 6 4-10 4 16" />
           </svg>
-          <span className="text-xl font-bold">Menalon Trail</span>
+          <span className="text-xl font-bold">Osi&amp;Avivit&apos;s Menalon Trail</span>
         </Link>
         <nav className="flex gap-6">
           <Link href="/" className="hover:text-green-200 transition-colors">

@@ -77,7 +77,7 @@ export function exportToExcel(data: ExportData) {
   const rows = buildRows(data);
   const ws = XLSX.utils.json_to_sheet(rows);
   const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, 'Menalon Trail Plan');
+  XLSX.utils.book_append_sheet(wb, ws, "Osi&Avivit's Menalon Trail");
 
   // Auto-size columns
   const colWidths = Object.keys(rows[0] || {}).map((key) => ({
@@ -87,7 +87,7 @@ export function exportToExcel(data: ExportData) {
 
   const buf = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
   const blob = new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-  saveAs(blob, 'menalon-trail-plan.xlsx');
+  saveAs(blob, 'osi-avivit-menalon-trail.xlsx');
 }
 
 export function exportToDoc(data: ExportData) {
@@ -96,8 +96,8 @@ export function exportToDoc(data: ExportData) {
   let totalDistance = 0;
   let totalDuration = 0;
 
-  let html = `<html><head><meta charset="utf-8"><title>Menalon Trail Plan</title></head><body>`;
-  html += `<h1>Menalon Trail — Hiking Plan</h1>`;
+  let html = `<html><head><meta charset="utf-8"><title>Osi&Avivit's Menalon Trail</title></head><body>`;
+  html += `<h1>Osi&amp;Avivit's Menalon Trail — Hiking Plan</h1>`;
   html += `<p><strong>Pace:</strong> ${pace}${startDate ? ` | <strong>Start Date:</strong> ${startDate}` : ''}</p>`;
   html += `<hr>`;
 
@@ -140,5 +140,5 @@ export function exportToDoc(data: ExportData) {
   html += `</body></html>`;
 
   const blob = new Blob([html], { type: 'application/msword' });
-  saveAs(blob, 'menalon-trail-plan.doc');
+  saveAs(blob, 'osi-avivit-menalon-trail.doc');
 }
