@@ -20,7 +20,7 @@ interface ItineraryStore {
   assignSection: (sectionId: number, dayIndex: number) => void;
   removeSection: (sectionId: number, dayIndex: number) => void;
   moveSection: (sectionId: number, fromDay: number, toDay: number) => void;
-  addDay: () => void;
+  addDay: (afterIndex?: number) => void;
   removeDay: (dayIndex: number) => void;
   toggleRestDay: (dayIndex: number) => void;
   autoGroup: () => void;
@@ -151,16 +151,26 @@ export const useItineraryStore = create<ItineraryStore>((set, get) => ({
     }
   },
 
-  addDay: () => {
+  addDay: (afterIndex?: number) => {
     const { days: prevDays, startDate, pace } = get();
+    const insertAt = afterIndex !== undefined ? afterIndex + 1 : prevDays.length;
     const newDay: ItineraryDay = {
-      dayNumber: prevDays.length + 1,
-      date: startDate ? addDays(startDate, prevDays.length) : null,
+      dayNumber: insertAt + 1,
+      date: null,
       sectionIds: [],
       isRestDay: false,
     };
+    const days = [
+      ...prevDays.slice(0, insertAt),
+      newDay,
+      ...prevDays.slice(insertAt),
+    ].map((day, i) => ({
+      ...day,
+      dayNumber: i + 1,
+      date: startDate ? addDays(startDate, i) : null,
+    }));
     set((state) => ({
-      days: [...prevDays, newDay],
+      days,
       history: [...state.history, { startDate, pace, days: prevDays }],
       canUndo: true,
     }));

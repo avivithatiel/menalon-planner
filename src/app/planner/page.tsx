@@ -85,7 +85,7 @@ export default function PlannerPage() {
           Auto-Group Sections
         </button>
         <button
-          onClick={addDay}
+          onClick={() => addDay()}
           className="border border-[var(--color-forest)] text-[var(--color-forest)] px-4 py-2 rounded-lg text-sm hover:bg-[var(--color-forest)] hover:text-white transition-colors"
         >
           + Add Day
@@ -154,6 +154,13 @@ export default function PlannerPage() {
                   )}
                 </div>
                 <div className="flex gap-2">
+                  <button
+                    onClick={() => addDay(dayIndex)}
+                    className="text-xs text-[var(--color-stone)] hover:text-[var(--color-forest)]"
+                    title="Insert day after this one"
+                  >
+                    ＋
+                  </button>
                   <button
                     onClick={() => toggleRestDay(dayIndex)}
                     className="text-xs text-[var(--color-stone)] hover:text-blue-600"
